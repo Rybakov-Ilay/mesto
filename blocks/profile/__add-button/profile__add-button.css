@@ -1,0 +1,11 @@
+.profile__add-button {
+  width: 100%;
+  grid-area: edit-button;
+  background: url("../../../images/profile-bottom-plus.svg") center no-repeat;
+  border: 2px solid #ffffff;
+  box-sizing: border-box;
+  border-radius: 2px;
+  min-height: 50px;
+  cursor: pointer;
+  padding: 0;
+}
