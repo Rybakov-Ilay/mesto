@@ -14,7 +14,6 @@
   </head>
   <body class="root">
     <div class="page">
-
       <header class="header">
         <div class="header__logo"></div>
       </header>
@@ -23,30 +22,27 @@
         <section class="profile">
           <img
             class="profile__avatar"
-            src="./images/avatar-kusto.png"
-            alt="Портрет Жака-Ива Кусто"
+            src="./images/me-avatar.jpg"
+            alt="Портрет автора фотографий - Рыбакова Ильи"
           />
-          <form class="profile__form-edit" action="">
-            <h1 class="profile__title">
-              Жак-Ив Кусто<button class="profile__edit-button"></button>
-            </h1>
-            <p class="profile__subtitle">Исследователь океана</p>
-          </form>
-          <form class="profile__form-add" action="">
-            <button class="profile__add-button"></button>
-          </form>
+          <div class="profile__info">
+            <div class="profile__title-container">
+              <h1 class="profile__title">Рыбаков Илья</h1>
+              <button class="profile__edit-button" type="button"></button>
+            </div>
+            <p class="profile__subtitle">Любитель не сидеть на месте</p>
+          </div>
+          <div class="profile__form-add">
+            <button class="profile__add-button" type="button"></button>
+          </div>
         </section>
         <section class="cards">
           <ul class="cards__list">
             <li class="card">
               <figure class="card__figure">
-                <img
-                  class="card__image"
-                  src="./images/kirill-pershin-1088404-unsplash-1.png"
-                  alt=""
-                />
+                <img class="card__image" src="./images/balos.jpg" alt="" />
                 <figcaption class="card__caption">
-                  <p class="card__caption-title">Карачаевск</p>
+                  <p class="card__caption-title">Пляж Балос, о.Крит</p>
                   <img
                     class="card__caption-like"
                     src="./images/like.svg"
@@ -59,11 +55,11 @@
               <figure class="card__figure">
                 <img
                   class="card__image"
-                  src="./images/kirill-pershin-1088404-unsplash-1.png"
+                  src="./images/berlin-wall.jpg"
                   alt=""
                 />
                 <figcaption class="card__caption">
-                  <p class="card__caption-title">Карачаевск</p>
+                  <p class="card__caption-title">Берлинская стена</p>
                   <img
                     class="card__caption-like"
                     src="./images/like.svg"
@@ -76,11 +72,11 @@
               <figure class="card__figure">
                 <img
                   class="card__image"
-                  src="./images/kirill-pershin-1088404-unsplash-1.png"
+                  src="./images/marsascala-malta.jpg"
                   alt=""
                 />
                 <figcaption class="card__caption">
-                  <p class="card__caption-title">Карачаевск</p>
+                  <p class="card__caption-title">Бухта Марсаскала</p>
                   <img
                     class="card__caption-like"
                     src="./images/like.svg"
@@ -93,11 +89,11 @@
               <figure class="card__figure">
                 <img
                   class="card__image"
-                  src="./images/kirill-pershin-1088404-unsplash-1.png"
+                  src="./images/monolitos-rodos.jpg"
                   alt=""
                 />
                 <figcaption class="card__caption">
-                  <p class="card__caption-title">Карачаевск</p>
+                  <p class="card__caption-title">Замок Монолитос, о.Родос</p>
                   <img
                     class="card__caption-like"
                     src="./images/like.svg"
@@ -110,11 +106,11 @@
               <figure class="card__figure">
                 <img
                   class="card__image"
-                  src="./images/kirill-pershin-1088404-unsplash-1.png"
+                  src="./images/ramla-beach-Gozo.jpg"
                   alt=""
                 />
                 <figcaption class="card__caption">
-                  <p class="card__caption-title">Карачаевск</p>
+                  <p class="card__caption-title">Пляж Рамла, о.Гозо</p>
                   <img
                     class="card__caption-like"
                     src="./images/like.svg"
@@ -125,13 +121,9 @@
             </li>
             <li class="card">
               <figure class="card__figure">
-                <img
-                  class="card__image"
-                  src="./images/kirill-pershin-1088404-unsplash-1.png"
-                  alt=""
-                />
+                <img class="card__image" src="./images/valletta.jpg" alt="" />
                 <figcaption class="card__caption">
-                  <p class="card__caption-title">Карачаевск</p>
+                  <p class="card__caption-title">Валлетта, Мальта</p>
                   <img
                     class="card__caption-like"
                     src="./images/like.svg"
@@ -148,9 +140,9 @@
         <p class="footer__copyright">&copy; Рыбаков Илья</p>
       </footer>
 
-      <div class="popup">
+      <div class="popup popup_opened">
         <div class="popup__container">
-          <button class="popup__button-close"></button>
+          <button class="popup__button-close" type="button"></button>
           <form class="popup__form">
             <h3 class="popup__form-title">Редактировать профиль</h3>
             <input
@@ -169,7 +161,7 @@
           </form>
         </div>
       </div>
-
     </div>
+    <script src="./scripts/pop-up.js"></script>
   </body>
 </html>

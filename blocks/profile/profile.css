@@ -2,7 +2,7 @@
   display: grid;
   grid-template-columns: 120px 1fr 150px;
   grid-template-areas:
-  "avatar profile-info edit-buttom";
+  "avatar profile-info add-button";
   margin-top: 40px;
   gap: 30px;
   align-items: center;
@@ -14,7 +14,7 @@
     grid-template-areas:
       "avatar"
       "profile-info"
-      "edit-buttom";
+      "add-button";
     gap: 26px;
   }
 }

@@ -6,4 +6,47 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+  width: 200px;
+}
+
+@media screen and (max-width: 920px) {
+  .card__caption-title {
+    width: 250px;
+  }
+}
+
+@media screen and (max-width: 730px) {
+  .card__caption-title {
+    width: 200px;
+  }
+}
+
+@media screen and (max-width: 635px) {
+  .card__caption-title {
+    width: 400px;
+  }
+}
+
+@media screen and (max-width: 540px) {
+  .card__caption-title {
+    width: 300px;
+  }
+}
+
+@media screen and (max-width: 440px) {
+  .card__caption-title {
+    width: 250px;
+  }
+}
+
+@media screen and (max-width: 380px) {
+  .card__caption-title {
+    width: 200px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .card__caption-title {
+    width: 150px;
+  }
 }
