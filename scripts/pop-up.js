@@ -1,10 +1,8 @@
 const content = document.querySelector(".content");
 const popup = document.querySelector(".popup");
-
 const editButton = content.querySelector(".profile__edit-button");
 const profileUserName = content.querySelector(".profile__title");
 const profileUserJob = content.querySelector(".profile__subtitle");
-
 const popupUserName = popup.querySelector(".popup__form-user-name");
 const popupUserJob = popup.querySelector(".popup__form-user-vocation");
 const popupButtonClose = popup.querySelector(".popup__button-close");

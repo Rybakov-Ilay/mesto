@@ -10,5 +10,6 @@
     font-size: 14px;
     line-height: 17px;
     text-align: center;
+    justify-self: center;
   }
 }
