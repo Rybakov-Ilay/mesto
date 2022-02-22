@@ -1,6 +1,6 @@
-[//]: # ([![pages-build-deployment]&#40;https://github.com/Rybakov-Ilay/russian-travel/actions/workflows/pages/pages-build-deployment/badge.svg&#41;]&#40;https://github.com/Rybakov-Ilay/russian-travel/actions/workflows/pages/pages-build-deployment&#41;)
-# Mesto
-[//]: # (# Проект: [Mesto]&#40;https://rybakov-ilay.github.io/russian-travel/&#41;)
+[![pages-build-deployment](https://github.com/Rybakov-Ilay/mesto/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/Rybakov-Ilay/mesto/actions/workflows/pages/pages-build-deployment)
+
+# Проект [Mesto](https://rybakov-ilay.github.io/mesto/)
 
 ## Описание
 
@@ -24,4 +24,4 @@
 
 ## Проект развернут по адресу:
 
-[//]: # ([*https://rybakov-ilay.github.io/russian-travel/*]&#40;https://rybakov-ilay.github.io/russian-travel/&#41;)
+[*https://rybakov-ilay.github.io/mesto/*](https://rybakov-ilay.github.io/mesto/)
