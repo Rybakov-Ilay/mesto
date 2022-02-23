@@ -2,13 +2,18 @@
   min-width: 24px;
   min-height: 24px;
   box-sizing: border-box;
-  border: 1px solid white;
+  border: none;
   background: url("../../../images/profile-edit-button.svg") center/cover
     no-repeat;
   margin: 0 0 0 18px;
   padding: 0;
   cursor: pointer;
   display: inline-flex;
+  transition: opacity 0.3s;
+}
+
+.profile__edit-button:hover{
+  opacity: 0.8;
 }
 
 @media screen and (max-width: 600px) {

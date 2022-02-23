@@ -25,11 +25,12 @@
 @import "../blocks/cards/__list/cards__list.css";
 
 @import "../blocks/card/card.css";
-@import "../blocks/card/__figure/card__figure.css";
+@import "../blocks/card/__article/card__article.css";
 @import "../blocks/card/__image/card__image.css";
 @import "../blocks/card/__caption/card__caption.css";
 @import "../blocks/card/__caption-title/card__caption-title.css";
-@import "../blocks/card/__caption-like/card__caption-like.css";
+@import "../blocks/card/__button-like/card__button-like.css";
+@import "../blocks/card/__button-like/_active/card__button-like_active.css";
 
 @import "../blocks/footer/footer.css";
 @import "../blocks/footer/__copyright/footer__copyright.css";
@@ -40,7 +41,8 @@
 @import "../blocks/popup/__button-close/popup__button-close.css";
 @import "../blocks/popup/__form/popup__form.css";
 @import "../blocks/popup/__form-title/popup__form-title.css";
-@import "../blocks/popup/__form-user-name/popup__form-user-name.css";
-@import "../blocks/popup/__form-user-vocation/popup__form-user-vocation.css";
+@import "../blocks/popup/__input/__input.css";
+@import "../blocks/popup/__input/_type/popup__input_type_name.css";
+@import "../blocks/popup/__input/_type/popup__input_type_job.css";
 @import "../blocks/popup/__form-button/popup__form-button.css";
 

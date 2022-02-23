@@ -6,7 +6,7 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-  margin: 25px 0 0 21px;
+  margin: 25px 0 26px 21px;
   width: 200px;
 }
 
@@ -49,5 +49,6 @@
 @media screen and (max-width: 320px) {
   .card__caption-title {
     width: 150px;
+    margin: 25px 0 25.5px 21px;
   }
 }

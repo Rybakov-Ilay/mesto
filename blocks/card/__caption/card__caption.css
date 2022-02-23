@@ -2,11 +2,9 @@
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-  min-height: 80px;
 }
 
 @media screen and (max-width: 460px){
   .card__caption {
-    min-height: 79px;
   }
 }

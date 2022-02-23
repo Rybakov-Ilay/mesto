@@ -25,117 +25,110 @@
           <div class="profile__info">
             <div class="profile__title-container">
               <h1 class="profile__title">Рыбаков Илья</h1>
-              <button class="profile__edit-button" type="button"></button>
+              <button
+                class="profile__edit-button"
+                type="button"
+                aria-label="редактировать профиль"
+              ></button>
             </div>
             <p class="profile__subtitle">Любитель не сидеть на месте</p>
           </div>
           <div class="profile__form-add">
-            <button class="profile__add-button" type="button"></button>
+            <button
+              class="profile__add-button"
+              type="button"
+              aria-label="добавить фотографию"
+            ></button>
           </div>
         </section>
         <section class="cards" aria-label="Фотографии автора с подписями">
           <ul class="cards__list">
             <li class="card">
-              <figure class="card__figure">
+              <article class="card__article">
                 <img
                   class="card__image"
                   src="./images/balos.jpg"
                   alt="Пляж Балос, о.Крит"
                 />
-                <figcaption class="card__caption">
-                  <p class="card__caption-title">Пляж Балос, о.Крит</p>
-                  <img
-                    class="card__caption-like"
-                    src="./images/like.svg"
-                    alt="Лайк"
-                  />
-                </figcaption>
-              </figure>
+                <div class="card__caption">
+                  <h2 class="card__caption-title">Пляж Балос, о.Крит</h2>
+                  <button
+                    class="card__button-like card__button-like_active"
+                    aria-label="лайк"
+                  ></button>
+                </div>
+              </article>
             </li>
             <li class="card">
-              <figure class="card__figure">
+              <article class="card__article">
                 <img
                   class="card__image"
                   src="./images/berlin-wall.jpg"
                   alt="Берлинская стена"
                 />
-                <figcaption class="card__caption">
-                  <p class="card__caption-title">Берлинская стена</p>
-                  <img
-                    class="card__caption-like"
-                    src="./images/like.svg"
-                    alt="Лайк"
-                  />
-                </figcaption>
-              </figure>
+                <div class="card__caption">
+                  <h2 class="card__caption-title">Берлинская стена</h2>
+                  <button class="card__button-like" aria-label="лайк"></button>
+                </div>
+              </article>
             </li>
             <li class="card">
-              <figure class="card__figure">
+              <article class="card__article">
                 <img
                   class="card__image"
                   src="./images/marsascala-malta.jpg"
                   alt="Бухта Марсаскала"
                 />
-                <figcaption class="card__caption">
-                  <p class="card__caption-title">Бухта Марсаскала</p>
-                  <img
-                    class="card__caption-like"
-                    src="./images/like.svg"
-                    alt="Лайк"
-                  />
-                </figcaption>
-              </figure>
+                <div class="card__caption">
+                  <h2 class="card__caption-title">Бухта Марсаскала</h2>
+                  <button
+                    class="card__button-like card__button-like_active"
+                    aria-label="лайк"
+                  ></button>
+                </div>
+              </article>
             </li>
             <li class="card">
-              <figure class="card__figure">
+              <article class="card__article">
                 <img
                   class="card__image"
                   src="./images/monolitos-rodos.jpg"
                   alt="Замок Монолитос, о.Родос"
                 />
-                <figcaption class="card__caption">
-                  <p class="card__caption-title">Замок Монолитос, о.Родос</p>
-                  <img
-                    class="card__caption-like"
-                    src="./images/like.svg"
-                    alt="Лайк"
-                  />
-                </figcaption>
-              </figure>
+                <div class="card__caption">
+                  <h2 class="card__caption-title">Замок Монолитос, о.Родос</h2>
+                  <button class="card__button-like" aria-label="лайк"></button>
+                </div>
+              </article>
             </li>
             <li class="card">
-              <figure class="card__figure">
+              <article class="card__article">
                 <img
                   class="card__image"
                   src="./images/ramla-beach-Gozo.jpg"
                   alt="Пляж Рамла, о.Гозо"
                 />
-                <figcaption class="card__caption">
-                  <p class="card__caption-title">Пляж Рамла, о.Гозо</p>
-                  <img
-                    class="card__caption-like"
-                    src="./images/like.svg"
-                    alt="Лайк"
-                  />
-                </figcaption>
-              </figure>
+                <div class="card__caption">
+                  <h2 class="card__caption-title">Пляж Рамла, о.Гозо</h2>
+                  <button class="card__button-like" aria-label="лайк"></button>
+                </div>
+              </article>
             </li>
             <li class="card">
-              <figure class="card__figure">
+              <article class="card__article">
                 <img
                   class="card__image"
                   src="./images/valletta.jpg"
                   alt="Валлетта, Мальта"
                 />
-                <figcaption class="card__caption">
-                  <p class="card__caption-title">Валлетта, Мальта</p>
-                  <img
-                    class="card__caption-like"
-                    src="./images/like.svg"
-                    alt="Лайк"
-                  />
-                </figcaption>
-              </figure>
+                <div class="card__caption">
+                  <h2 class="card__caption-title">Валлетта, Мальта</h2>
+                  <button
+                    class="card__button-like card__button-like_active"
+                    aria-label="лайк"
+                  ></button>
+                </div>
+              </article>
             </li>
           </ul>
         </section>
@@ -145,19 +138,23 @@
         <p class="footer__copyright">&copy; 2021 Рыбаков Илья</p>
       </footer>
 
-      <div class="popup popup_opened">
+      <div class="popup">
         <div class="popup__container">
-          <button class="popup__button-close" type="button"></button>
-          <form class="popup__form">
-            <h2 class="popup__form-title">Редактировать профиль</h2>
+          <button
+            class="popup__button-close"
+            type="button"
+            aria-label="закрыть форму редактировать профиль"
+          ></button>
+          <form class="popup__form" name="edit-form">
+            <h3 class="popup__form-title">Редактировать профиль</h3>
             <input
-              class="popup__form-user-name"
+              class="popup__input popup__input_type_name"
               type="text"
               name="user-name"
               placeholder="Ваше имя"
             />
             <input
-              class="popup__form-user-vocation"
+              class="popup__input popup__input_type_job"
               type="text"
               name="user-vocation"
               placeholder="Ваше призвание"
