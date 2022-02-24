@@ -3,8 +3,3 @@
   justify-content: space-between;
   align-items: baseline;
 }
-
-@media screen and (max-width: 460px){
-  .card__caption {
-  }
-}

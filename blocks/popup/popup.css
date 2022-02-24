@@ -9,10 +9,5 @@
   display: none;
   flex-direction: column;
   align-items: center;
-}
-
-@media screen and (max-width: 600px) {
-  .popup {
-    justify-content: center;
-  }
+  justify-content: center;
 }

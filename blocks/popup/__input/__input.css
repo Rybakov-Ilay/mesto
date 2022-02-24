@@ -11,6 +11,15 @@
   border-bottom: solid 1px rgba(0, 0, 0, 0.2);
 }
 
+.popup__input:nth-child(2) {
+  margin-bottom: 48px;
+}
+
+@media screen and (max-width: 600px) {
+  .popup__input:last-child {
+    margin-bottom: 44px;
+  }
+}
 .popup__input:focus {
   background: #f0f8ff;
 }

@@ -41,7 +41,5 @@
 @import "../blocks/popup/__form/popup__form.css";
 @import "../blocks/popup/__form-title/popup__form-title.css";
 @import "../blocks/popup/__input/__input.css";
-@import "../blocks/popup/__input/_type/popup__input_type_name.css";
-@import "../blocks/popup/__input/_type/popup__input_type_job.css";
 @import "../blocks/popup/__form-button/popup__form-button.css";
 
