@@ -16,10 +16,11 @@
 }
 
 @media screen and (max-width: 600px) {
-  .popup__input:last-child {
+  .popup__input:nth-child(2) {
     margin-bottom: 44px;
   }
 }
+
 .popup__input:focus {
   background: #f0f8ff;
 }
