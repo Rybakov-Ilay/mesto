@@ -50,13 +50,12 @@ function createCard(cardAttribute) {
     cardAttribute.name;
   newCardImage.src = cardAttribute.link;
   newCardImage.alt = cardAttribute.name;
+  newCardImage.addEventListener("click", () => viewCard(cardAttribute));
+  newCard.querySelector(".card__trash").addEventListener("click", deleteCard);
   newCard
     .querySelector(".card__button-like")
     .addEventListener("click", likesActivationSwitch);
-  newCard.querySelector(".card__trash").addEventListener("click", deleteCard);
-  newCard
-    .querySelector(".card__image")
-    .addEventListener("click", () => viewCard(cardAttribute));
+
   return newCard;
 }
 
