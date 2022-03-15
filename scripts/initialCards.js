@@ -25,8 +25,6 @@ const initialCards = [
   },
 ];
 
-const cardsList = content.querySelector(".cards__list");
-
 function likesActivationSwitch(evt) {
   evt.target.classList.toggle("card__button-like_active");
 }
@@ -35,16 +33,10 @@ function deleteCard(evt) {
   evt.target.closest(".card").remove();
 }
 
-function viewCard(evt) {
-  const popupView = document.querySelector(".popup_view-image");
-  const popupViewButtonClose = popupView.querySelector(".popup__button-close");
-  popupView.querySelector(".popup__image").src = evt.target.src;
-  popupView.querySelector(".popup__image-caption").textContent =
-    evt.target.nextElementSibling.textContent;
+function viewCard(cardAttribute) {
+  popupViewImage.src = cardAttribute.link;
+  popupViewImageCaption.textContent = cardAttribute.name;
   popupOpen(popupView);
-  popupViewButtonClose.addEventListener("click", function () {
-    popupClose(popupView);
-  });
 }
 
 // Функция создает и возвращает html-разметку новой карточки
@@ -52,16 +44,19 @@ function viewCard(evt) {
 function createCard(cardAttribute) {
   const cardTemplate = document.querySelector(".cards_template").content;
   const newCard = cardTemplate.querySelector(".card").cloneNode(true);
+  const newCardImage = newCard.querySelector(".card__image");
 
   newCard.querySelector(".card__caption-title").textContent =
     cardAttribute.name;
-  newCard.querySelector(".card__image").src = cardAttribute.link;
-  newCard.querySelector(".card__image").alt = cardAttribute.name;
+  newCardImage.src = cardAttribute.link;
+  newCardImage.alt = cardAttribute.name;
   newCard
     .querySelector(".card__button-like")
     .addEventListener("click", likesActivationSwitch);
   newCard.querySelector(".card__trash").addEventListener("click", deleteCard);
-  newCard.querySelector(".card__image").addEventListener("click", viewCard);
+  newCard
+    .querySelector(".card__image")
+    .addEventListener("click", () => viewCard(cardAttribute));
   return newCard;
 }
 
