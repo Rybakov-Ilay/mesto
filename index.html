@@ -59,22 +59,25 @@
           ></button>
           <h3 class="popup__form-title">Редактировать профиль</h3>
 
-          <form class="popup__form" name="edit-form" novalidate>
+          <form class="popup__form" name="profileEditingForm" novalidate>
 
             <input
               class="popup__input popup__input_type_name"
               type="text"
-              name="user-name"
+              name="userName"
               placeholder="Ваше имя"
               required
               minlength="2"
               maxlength="40"
+              id = "userName-input"
             />
+
+            <span class="userName-input-error popup__input-error"></span>
 
             <input
               class="popup__input popup__input_type_job"
               type="text"
-              name="user-vocation"
+              name="userJob"
               placeholder="Ваше призвание"
               required
               minlength="2"
@@ -97,12 +100,12 @@
         ></button>
         <h3 class="popup__form-title">Новое место</h3>
 
-        <form class="popup__form" name="edit-form">
+        <form class="popup__form" name="addCardForm" novalidate>
 
           <input
             class="popup__input popup__input_type_place-name"
             type="text"
-            name="place-name"
+            name="placeName"
             placeholder="название"
             required
             minlength="2"
@@ -112,7 +115,7 @@
           <input
             class="popup__input popup__input_type_place-link"
             type="url"
-            name="place-link"
+            name="placeLink"
             placeholder="ссылка на картинку"
             required
           />
@@ -157,6 +160,6 @@
 
     <script src="./scripts/pop-up.js"></script>
     <script src="./scripts/initialCards.js"></script>
-    <script src="./scripts/validation.js"></script>
+    <script src="scripts/validate.js"></script>
   </body>
 </html>
