@@ -58,23 +58,32 @@
             aria-label="закрыть форму редактировать профиль"
           ></button>
           <h3 class="popup__form-title">Редактировать профиль</h3>
-          <form class="popup__form" name="edit-form">
+
+          <form class="popup__form" name="edit-form" novalidate>
+
             <input
               class="popup__input popup__input_type_name"
               type="text"
               name="user-name"
               placeholder="Ваше имя"
               required
+              minlength="2"
+              maxlength="40"
             />
+
             <input
               class="popup__input popup__input_type_job"
               type="text"
               name="user-vocation"
               placeholder="Ваше призвание"
               required
+              minlength="2"
+              maxlength="200"
             />
             <button class="popup__form-button" type="submit">Сохранить</button>
+
           </form>
+
         </div>
       </div>
     </div>
@@ -87,23 +96,29 @@
           aria-label="закрыть форму добавления"
         ></button>
         <h3 class="popup__form-title">Новое место</h3>
+
         <form class="popup__form" name="edit-form">
+
           <input
             class="popup__input popup__input_type_place-name"
             type="text"
             name="place-name"
             placeholder="название"
             required
+            minlength="2"
+            maxlength="30"
           />
+
           <input
             class="popup__input popup__input_type_place-link"
-            type="text"
+            type="url"
             name="place-link"
             placeholder="ссылка на картинку"
             required
           />
           <button class="popup__form-button" type="submit">Сохранить</button>
         </form>
+
       </div>
     </div>
 
@@ -142,5 +157,6 @@
 
     <script src="./scripts/pop-up.js"></script>
     <script src="./scripts/initialCards.js"></script>
+    <script src="./scripts/validation.js"></script>
   </body>
 </html>
