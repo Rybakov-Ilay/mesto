@@ -1,5 +1,9 @@
+const getElementError = (form, element) => {
+  return form.querySelector(`.${element.id}-error`);
+};
+
 const showError = (form, element, errorMessage) => {
-  const elementError = form.querySelector(`.${element.id}-error`);
+  const elementError = getElementError(form, element);
 
   element.classList.add("popup__input_type_error");
   elementError.textContent = errorMessage;
@@ -7,7 +11,7 @@ const showError = (form, element, errorMessage) => {
 };
 
 const hideError = (form, element, errorMessage) => {
-  const elementError = form.querySelector(`.${element.id}-error`);
+  const elementError = getElementError(form, element);
 
   element.classList.remove("popup__input_type_error");
   elementError.textContent = errorMessage;
@@ -20,26 +24,22 @@ const isValid = (form, element) => {
     : hideError(form, element);
 };
 
-// profileEditingForm.addEventListener("input", () =>
-//   isValid(profileEditingForm, popupEditUserName)
-// );
-
-
-
 const setEventListeners = (form) => {
-  // Находим все поля внутри формы,
-  // сделаем из них массив методом Array.from
-  const inputList = Array.from(form.querySelectorAll('.popup__input'));
-
-  // Обойдём все элементы полученной коллекции
+  const inputList = Array.from(form.querySelectorAll(".popup__input"));
   inputList.forEach((inputElement) => {
-    // каждому полю добавим обработчик события input
-    inputElement.addEventListener('input', () => {
-      // Внутри колбэка вызовем isValid,
-      // передав ей форму и проверяемый элемент
-      isValid(form, inputElement)
+    inputElement.addEventListener("input", () => {
+      isValid(form, inputElement);
     });
   });
 };
 
-setEventListeners(profileEditingForm)
+const enableValidation = () => {
+  formList.forEach((formElement) => {
+    formElement.addEventListener("submit", (evt) => {
+      evt.preventDefault();
+    });
+    setEventListeners(formElement);
+  });
+};
+
+enableValidation();

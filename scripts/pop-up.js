@@ -1,6 +1,7 @@
 const content = document.querySelector(".content");
 const popupEdit = document.querySelector(".popup_edit");
 const forms = document.forms;
+const formList = Array.from(forms);
 const profileEditingForm = forms.profileEditingForm;
 const popupEditButtonClose = popupEdit.querySelector(".popup__button-close");
 const popupEditUserName = profileEditingForm.elements.userName;

@@ -82,7 +82,11 @@
               required
               minlength="2"
               maxlength="200"
+              id = "userJob-input"
             />
+
+            <span class="userJob-input-error popup__input-error"></span>
+
             <button class="popup__form-button" type="submit">Сохранить</button>
 
           </form>
@@ -110,7 +114,10 @@
             required
             minlength="2"
             maxlength="30"
+            id="placeName-input"
           />
+
+          <span class="placeName-input-error popup__input-error"></span>
 
           <input
             class="popup__input popup__input_type_place-link"
@@ -118,7 +125,11 @@
             name="placeLink"
             placeholder="ссылка на картинку"
             required
+            id="placeLink-input"
           />
+
+          <span class="placeLink-input-error popup__input-error"></span>
+
           <button class="popup__form-button" type="submit">Сохранить</button>
         </form>
 
