@@ -1,3 +1,7 @@
+
+
+
+
 const getElementError = (form, element) => {
   return form.querySelector(`.${element.id}-error`);
 };
@@ -24,11 +28,31 @@ const isValid = (form, element) => {
     : hideError(form, element);
 };
 
+const hasInvalidInput = (inputList) => {
+  return inputList.some((inputElement) => {
+    return !inputElement.validity.valid;
+  });
+};
+
+const toggleButtonState = (inputList, button) => {
+  if (hasInvalidInput(inputList)) {
+    button.classList.add("popup__submit_inactive");
+    button.setAttribute("disabled", "");
+  } else {
+    button.classList.remove("popup__submit_inactive");
+    button.removeAttribute("disabled");
+  }
+};
+
 const setEventListeners = (form) => {
   const inputList = Array.from(form.querySelectorAll(".popup__input"));
+  const button = form.querySelector(".popup__submit");
+  toggleButtonState(inputList, button);
+
   inputList.forEach((inputElement) => {
     inputElement.addEventListener("input", () => {
       isValid(form, inputElement);
+      toggleButtonState(inputList, button);
     });
   });
 };
