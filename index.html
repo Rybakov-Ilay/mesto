@@ -60,37 +60,38 @@
           <h3 class="popup__form-title">Редактировать профиль</h3>
 
           <form class="popup__form" name="profileEditingForm" novalidate>
+            <div class="popup__input-wrapper">
+              <input
+                class="popup__input popup__input_type_name"
+                type="text"
+                name="userName"
+                placeholder="Ваше имя"
+                required
+                minlength="2"
+                maxlength="40"
+                id="userName-input"
+              />
 
-            <input
-              class="popup__input popup__input_type_name"
-              type="text"
-              name="userName"
-              placeholder="Ваше имя"
-              required
-              minlength="2"
-              maxlength="40"
-              id = "userName-input"
-            />
+              <span class="userName-input-error popup__input-error"></span>
+            </div>
 
-            <span class="userName-input-error popup__input-error"></span>
+            <div class="popup__input-wrapper">
+              <input
+                class="popup__input popup__input_type_job"
+                type="text"
+                name="userJob"
+                placeholder="Ваше призвание"
+                required
+                minlength="2"
+                maxlength="200"
+                id="userJob-input"
+              />
 
-            <input
-              class="popup__input popup__input_type_job"
-              type="text"
-              name="userJob"
-              placeholder="Ваше призвание"
-              required
-              minlength="2"
-              maxlength="200"
-              id = "userJob-input"
-            />
-
-            <span class="userJob-input-error popup__input-error"></span>
+              <span class="userJob-input-error popup__input-error"></span>
+            </div>
 
             <button class="popup__submit" type="submit">Сохранить</button>
-
           </form>
-
         </div>
       </div>
     </div>
@@ -105,34 +106,34 @@
         <h3 class="popup__form-title">Новое место</h3>
 
         <form class="popup__form" name="addCardForm" novalidate>
+          <div class="popup__input-wrapper">
+            <input
+              class="popup__input popup__input_type_place-name"
+              type="text"
+              name="placeName"
+              placeholder="название"
+              required
+              minlength="2"
+              maxlength="30"
+              id="placeName-input"
+            />
 
-          <input
-            class="popup__input popup__input_type_place-name"
-            type="text"
-            name="placeName"
-            placeholder="название"
-            required
-            minlength="2"
-            maxlength="30"
-            id="placeName-input"
-          />
+            <span class="placeName-input-error popup__input-error"></span>
+          </div>
+          <div class="popup__input-wrapper">
+            <input
+              class="popup__input popup__input_type_place-link"
+              type="url"
+              name="placeLink"
+              placeholder="ссылка на картинку"
+              required
+              id="placeLink-input"
+            />
 
-          <span class="placeName-input-error popup__input-error"></span>
-
-          <input
-            class="popup__input popup__input_type_place-link"
-            type="url"
-            name="placeLink"
-            placeholder="ссылка на картинку"
-            required
-            id="placeLink-input"
-          />
-
-          <span class="placeLink-input-error popup__input-error"></span>
-
+            <span class="placeLink-input-error popup__input-error"></span>
+          </div>
           <button class="popup__submit" type="submit">Сохранить</button>
         </form>
-
       </div>
     </div>
 

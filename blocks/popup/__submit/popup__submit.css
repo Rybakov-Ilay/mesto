@@ -9,10 +9,10 @@
   padding: 14px 0;
   cursor: pointer;
   transition: opacity 0.3s;
-  margin: 48px 0 0;
+  margin: 28px 0 0;
 }
 
-.popup__submit:hover {
+.popup__submit:not([disabled]):hover {
   opacity: 0.8;
 }
 

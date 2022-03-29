@@ -1,8 +1,6 @@
 .popup__submit_inactive {
-opacity: 0.2;
-}
-
-.popup__submit_inactive:hover {
-  opacity: 0.2;
+  border: 1px solid rgba(0, 0, 0, 0.2);;
+  background-color: white;
+  color: rgba(0, 0, 0, 0.2);
   cursor: auto;
 }
