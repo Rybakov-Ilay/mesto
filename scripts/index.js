@@ -1,6 +1,13 @@
 import Card from "./Card.js";
 import FormValidator from "./FormValidator.js";
 import { initialCards, config } from "../utils/constants.js";
+import {
+  popupViewImage,
+  popupViewImageCaption,
+  popupView,
+  popupOpen,
+  popupClose,
+} from "../utils/popup.js";
 
 const content = document.querySelector(".content");
 const popupEdit = document.querySelector(".popup_edit");
@@ -17,31 +24,26 @@ const popupAdd = document.querySelector(".popup_add");
 const popupAddForm = forms.addCardForm;
 const popupAddFormSubmit = popupAddForm.querySelector(".popup__submit");
 const cardsList = content.querySelector(".cards__list");
-const popupView = document.querySelector(".popup_view-image");
-const popupViewImage = popupView.querySelector(".popup__image");
-const popupViewImageCaption = popupView.querySelector(".popup__image-caption");
 const cardName = popupAddForm.placeName;
 const cardLink = popupAddForm.placeLink;
 const popupsList = Array.from(document.querySelectorAll(".popup"));
 
 const CARD_SELECTOR_TEMPLATE = ".cards_template";
 
-function handlingPopupCloseByEscape(evt) {
-  if (evt.key === "Escape") {
-    const activePopup = document.querySelector(".popup_opened");
-    popupClose(activePopup);
-  }
-}
+const profileValidator = new FormValidator(
+  config,
+  forms.profileEditingForm,
+  profileSubmit
+);
+const cardValidator = new FormValidator(
+  config,
+  forms.addCardForm,
+  popupAddFormSubmit
+);
 
-function popupOpen(popup) {
-  popup.classList.add("popup_opened");
-  document.addEventListener("keydown", handlingPopupCloseByEscape);
-}
-
-function popupClose(popup) {
-  popup.classList.remove("popup_opened");
-  document.removeEventListener("keydown", handlingPopupCloseByEscape);
-}
+// Подключаем валидацию для формы профиля и формы добавления карточки
+profileValidator.enableValidation();
+cardValidator.enableValidation();
 
 function popupEditOpen() {
   popupEditUserName.value = profileUserName.textContent;
@@ -49,16 +51,11 @@ function popupEditOpen() {
   popupOpen(popupEdit);
 }
 
-function handlerButtonDisabled(button) {
-  button.classList.add("popup__submit_inactive");
-  button.setAttribute("disabled", "");
-}
-
 function handlingPopupEditForm(event) {
   event.preventDefault();
   profileUserName.textContent = popupEditUserName.value;
   profileUserJob.textContent = popupEditUserJob.value;
-  handlerButtonDisabled(profileSubmit);
+  profileValidator.disableSubmit();
   popupClose(popupEdit);
 }
 
@@ -66,7 +63,7 @@ function handlingPopupAddForm(event) {
   event.preventDefault();
   const cardAttribute = { name: cardName.value, link: cardLink.value };
   addCard(cardAttribute);
-  handlerButtonDisabled(popupAddFormSubmit);
+  cardValidator.disableSubmit();
   popupClose(popupAdd);
   popupAddForm.reset();
 }
@@ -100,9 +97,5 @@ profileButtonEdit.addEventListener("click", popupEditOpen);
 profileEditingForm.addEventListener("submit", handlingPopupEditForm);
 popupAddCardButton.addEventListener("click", () => popupOpen(popupAdd));
 popupAddForm.addEventListener("submit", handlingPopupAddForm);
-
-// Подключаем валидацию для формы профиля и формы добавления карточки
-new FormValidator(config, forms.profileEditingForm).enableValidation();
-new FormValidator(config, forms.addCardForm).enableValidation();
 
 export { popupView, popupViewImage, popupViewImageCaption, popupOpen };

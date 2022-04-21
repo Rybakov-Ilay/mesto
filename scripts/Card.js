@@ -3,7 +3,7 @@ import {
   popupViewImage,
   popupViewImageCaption,
   popupOpen,
-} from "./index.js";
+} from "../utils/popup.js";
 
 export default class Card {
   constructor(data, templateSelector) {
@@ -25,10 +25,12 @@ export default class Card {
 
   _deleteCard() {
     this._card.closest(".card").remove();
+    this._card = null;
   }
 
   _viewCard() {
     popupViewImage.src = this._link;
+    popupViewImage.alt = this._name;
     popupViewImageCaption.textContent = this._name;
     popupOpen(popupView);
   }

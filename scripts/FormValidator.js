@@ -1,7 +1,8 @@
 export default class FormValidator {
-  constructor(config, formElement) {
+  constructor(config, formElement, formSubmit) {
     this._config = config;
     this._formElement = formElement;
+    this._formSubmit = formSubmit;
   }
 
   // Находим класс ошибки и получаем
@@ -70,5 +71,11 @@ export default class FormValidator {
   // публичный метод, который включает валидацию формы
   enableValidation() {
     this._setEventListeners();
+  }
+
+  // метод отключающий кнопку
+  disableSubmit() {
+    this._formSubmit.classList.add(this._config.inactiveButtonClass);
+    this._formSubmit.setAttribute("disabled", "");
   }
 }
