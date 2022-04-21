@@ -1,5 +1,6 @@
-import { Card } from "./Card.js";
-import { initialCards } from "../utils/constants.js";
+import Card from "./Card.js";
+import FormValidator from "./FormValidator.js";
+import { initialCards, config } from "../utils/constants.js";
 
 const content = document.querySelector(".content");
 const popupEdit = document.querySelector(".popup_edit");
@@ -22,7 +23,7 @@ const popupViewImageCaption = popupView.querySelector(".popup__image-caption");
 const cardName = popupAddForm.placeName;
 const cardLink = popupAddForm.placeLink;
 const popupsList = Array.from(document.querySelectorAll(".popup"));
-const cardTemplate = document.querySelector(".cards_template").content;
+
 const CARD_SELECTOR_TEMPLATE = ".cards_template";
 
 function handlingPopupCloseByEscape(evt) {
@@ -99,5 +100,9 @@ profileButtonEdit.addEventListener("click", popupEditOpen);
 profileEditingForm.addEventListener("submit", handlingPopupEditForm);
 popupAddCardButton.addEventListener("click", () => popupOpen(popupAdd));
 popupAddForm.addEventListener("submit", handlingPopupAddForm);
+
+// Подключаем валидацию для формы профиля и формы добавления карточки
+new FormValidator(config, forms.profileEditingForm).enableValidation();
+new FormValidator(config, forms.addCardForm).enableValidation();
 
 export { popupView, popupViewImage, popupViewImageCaption, popupOpen };
