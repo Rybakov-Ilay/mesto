@@ -1,8 +1,11 @@
+import { Card } from "./Card.js";
+import { initialCards } from "../utils/constants.js";
+
 const content = document.querySelector(".content");
 const popupEdit = document.querySelector(".popup_edit");
 const forms = document.forms;
 const profileEditingForm = forms.profileEditingForm;
-const profileSubmit = profileEditingForm.querySelector('.popup__submit')
+const profileSubmit = profileEditingForm.querySelector(".popup__submit");
 const popupEditUserName = profileEditingForm.elements.userName;
 const popupEditUserJob = profileEditingForm.elements.userJob;
 const profileButtonEdit = content.querySelector(".profile__edit-button");
@@ -11,7 +14,7 @@ const profileUserJob = content.querySelector(".profile__subtitle");
 const popupAddCardButton = content.querySelector(".profile__add-button");
 const popupAdd = document.querySelector(".popup_add");
 const popupAddForm = forms.addCardForm;
-const popupAddFormSubmit = popupAddForm.querySelector('.popup__submit')
+const popupAddFormSubmit = popupAddForm.querySelector(".popup__submit");
 const cardsList = content.querySelector(".cards__list");
 const popupView = document.querySelector(".popup_view-image");
 const popupViewImage = popupView.querySelector(".popup__image");
@@ -20,6 +23,7 @@ const cardName = popupAddForm.placeName;
 const cardLink = popupAddForm.placeLink;
 const popupsList = Array.from(document.querySelectorAll(".popup"));
 const cardTemplate = document.querySelector(".cards_template").content;
+const CARD_SELECTOR_TEMPLATE = ".cards_template";
 
 function handlingPopupCloseByEscape(evt) {
   if (evt.key === "Escape") {
@@ -53,21 +57,20 @@ function handlingPopupEditForm(event) {
   event.preventDefault();
   profileUserName.textContent = popupEditUserName.value;
   profileUserJob.textContent = popupEditUserJob.value;
-  handlerButtonDisabled(profileSubmit)
+  handlerButtonDisabled(profileSubmit);
   popupClose(popupEdit);
-
 }
 
 function handlingPopupAddForm(event) {
   event.preventDefault();
   const cardAttribute = { name: cardName.value, link: cardLink.value };
   addCard(cardAttribute);
-  handlerButtonDisabled(popupAddFormSubmit)
+  handlerButtonDisabled(popupAddFormSubmit);
   popupClose(popupAdd);
   popupAddForm.reset();
 }
 
-function addEventListenerOnCloseAndOverlay(popup) {
+function setEventListenerOnCloseAndOverlay(popup) {
   popup.addEventListener("click", (evt) => {
     if (
       evt.target.classList.contains("popup") ||
@@ -78,49 +81,23 @@ function addEventListenerOnCloseAndOverlay(popup) {
   });
 }
 
-function likesActivationSwitch(evt) {
-  evt.target.classList.toggle("card__button-like_active");
-}
-
-function deleteCard(evt) {
-  evt.target.closest(".card").remove();
-}
-
-function viewCard(cardAttribute) {
-  popupViewImage.src = cardAttribute.link;
-  popupViewImageCaption.textContent = cardAttribute.name;
-  popupOpen(popupView);
-}
-
 // Функция создает и возвращает html-разметку новой карточки
-// принимая на вход имя и ссылку на изображение
-function createCard(cardAttribute) {
-  const newCard = cardTemplate.querySelector(".card").cloneNode(true);
-  const newCardImage = newCard.querySelector(".card__image");
-
-  newCard.querySelector(".card__caption-title").textContent =
-    cardAttribute.name;
-  newCardImage.src = cardAttribute.link;
-  newCardImage.alt = cardAttribute.name;
-  newCardImage.addEventListener("click", () => viewCard(cardAttribute));
-  newCard.querySelector(".card__trash").addEventListener("click", deleteCard);
-  newCard
-    .querySelector(".card__button-like")
-    .addEventListener("click", likesActivationSwitch);
-
-  return newCard;
+// принимая на вход объект с именем и ссылкой на изображение
+function createCard(data) {
+  return new Card(data, CARD_SELECTOR_TEMPLATE).generateCard();
 }
 
 // Функция добавления карточки в разметку (в начало)
-function addCard(cardAttribute) {
-  cardsList.prepend(createCard(cardAttribute));
+function addCard(data) {
+  cardsList.prepend(createCard(data));
 }
-
 // Инициализация начальных карточек из массива initialCards
 initialCards.forEach(addCard);
 
-popupsList.forEach(addEventListenerOnCloseAndOverlay);
+popupsList.forEach(setEventListenerOnCloseAndOverlay);
 profileButtonEdit.addEventListener("click", popupEditOpen);
 profileEditingForm.addEventListener("submit", handlingPopupEditForm);
 popupAddCardButton.addEventListener("click", () => popupOpen(popupAdd));
 popupAddForm.addEventListener("submit", handlingPopupAddForm);
+
+export { popupView, popupViewImage, popupViewImageCaption, popupOpen };
