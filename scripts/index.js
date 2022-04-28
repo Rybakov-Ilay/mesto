@@ -12,6 +12,8 @@ import {
   popupClose,
 } from "../utils/popup.js";
 
+import PopupWithImage from "./PopupWithImage.js";
+
 const content = document.querySelector(".content");
 const popupEdit = document.querySelector(".popup_edit");
 const forms = document.forms;
@@ -116,3 +118,5 @@ profileEditForm.addEventListener("submit", handlingPopupEditForm);
 popupAddForm.addEventListener("submit", handlingPopupAddForm);
 
 export { popupView, popupViewImage, popupViewImageCaption, popupOpen };
+
+
