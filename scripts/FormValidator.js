@@ -78,4 +78,14 @@ export default class FormValidator {
     this._formSubmit.classList.add(this._config.inactiveButtonClass);
     this._formSubmit.setAttribute("disabled", "");
   }
+  // метод скрывает ошибки полей и отключает кнопку
+  resetValidation() {
+    this.disableSubmit();
+    const inputList = Array.from(
+      this._formElement.querySelectorAll(this._config.inputSelector)
+    );
+    inputList.forEach((inputElement) => {
+      this._hideError(inputElement);
+    });
+  }
 }

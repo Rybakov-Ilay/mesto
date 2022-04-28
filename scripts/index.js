@@ -1,5 +1,7 @@
 import Card from "./Card.js";
 import FormValidator from "./FormValidator.js";
+import Section from "./Section.js";
+
 import { initialCards, config } from "../utils/constants.js";
 import {
   popupViewImage,
@@ -12,10 +14,10 @@ import {
 const content = document.querySelector(".content");
 const popupEdit = document.querySelector(".popup_edit");
 const forms = document.forms;
-const profileEditingForm = forms.profileEditingForm;
-const profileSubmit = profileEditingForm.querySelector(".popup__submit");
-const popupEditUserName = profileEditingForm.elements.userName;
-const popupEditUserJob = profileEditingForm.elements.userJob;
+const profileEditForm = forms.profileEditingForm;
+const profileSubmit = profileEditForm.querySelector(".popup__submit");
+const popupEditUserName = profileEditForm.elements.userName;
+const popupEditUserJob = profileEditForm.elements.userJob;
 const profileButtonEdit = content.querySelector(".profile__edit-button");
 const profileUserName = content.querySelector(".profile__title");
 const profileUserJob = content.querySelector(".profile__subtitle");
@@ -23,12 +25,12 @@ const popupAddCardButton = content.querySelector(".profile__add-button");
 const popupAdd = document.querySelector(".popup_add");
 const popupAddForm = forms.addCardForm;
 const popupAddFormSubmit = popupAddForm.querySelector(".popup__submit");
-const cardsList = content.querySelector(".cards__list");
 const cardName = popupAddForm.placeName;
 const cardLink = popupAddForm.placeLink;
 const popupsList = Array.from(document.querySelectorAll(".popup"));
 
-const CARD_SELECTOR_TEMPLATE = ".cards_template";
+const CARD_TEMPLATE_SELECTOR = ".cards_template";
+const CARD_LIST_SELECTOR = ".cards__list";
 
 const profileValidator = new FormValidator(
   config,
@@ -45,10 +47,32 @@ const cardValidator = new FormValidator(
 profileValidator.enableValidation();
 cardValidator.enableValidation();
 
+// Создаем объект содержащий секцию с карточками
+const cardList = new Section(
+  {
+    data: initialCards,
+    renderer: (item) => {
+      const card = new Card(item, CARD_TEMPLATE_SELECTOR);
+      const cardElement = card.generateCard();
+      cardList.setItem(cardElement);
+    },
+  },
+  CARD_LIST_SELECTOR
+);
+// Отрисовываем список карточек
+cardList.renderItems();
+
 function popupEditOpen() {
+  profileValidator.resetValidation();
   popupEditUserName.value = profileUserName.textContent;
   popupEditUserJob.value = profileUserJob.textContent;
   popupOpen(popupEdit);
+}
+
+function popupAddOpen() {
+  popupAddForm.reset();
+  cardValidator.resetValidation();
+  popupOpen(popupAdd);
 }
 
 function handlingPopupEditForm(event) {
@@ -62,7 +86,8 @@ function handlingPopupEditForm(event) {
 function handlingPopupAddForm(event) {
   event.preventDefault();
   const cardAttribute = { name: cardName.value, link: cardLink.value };
-  addCard(cardAttribute);
+  const card = new Card(cardAttribute, CARD_TEMPLATE_SELECTOR)
+  cardList.setItem(card.generateCard())
   cardValidator.disableSubmit();
   popupClose(popupAdd);
   popupAddForm.reset();
@@ -79,23 +104,18 @@ function setEventListenerOnCloseAndOverlay(popup) {
   });
 }
 
-// Функция создает и возвращает html-разметку новой карточки
-// принимая на вход объект с именем и ссылкой на изображение
-function createCard(data) {
-  return new Card(data, CARD_SELECTOR_TEMPLATE).generateCard();
-}
-
-// Функция добавления карточки в разметку (в начало)
-function addCard(data) {
-  cardsList.prepend(createCard(data));
-}
-// Инициализация начальных карточек из массива initialCards
-initialCards.forEach(addCard);
-
+// На все popup вешаем условие при котором их можно закрыть
+// и нажатием на крестик и вне модального окна
 popupsList.forEach(setEventListenerOnCloseAndOverlay);
+
+// Вешаем обработчики событий на кнопки открытия форм и их сабмиты
 profileButtonEdit.addEventListener("click", popupEditOpen);
-profileEditingForm.addEventListener("submit", handlingPopupEditForm);
-popupAddCardButton.addEventListener("click", () => popupOpen(popupAdd));
+popupAddCardButton.addEventListener("click", popupAddOpen);
+profileEditForm.addEventListener("submit", handlingPopupEditForm);
 popupAddForm.addEventListener("submit", handlingPopupAddForm);
+
+
+
+
 
 export { popupView, popupViewImage, popupViewImageCaption, popupOpen };
