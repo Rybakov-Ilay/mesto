@@ -1,6 +1,7 @@
 import Card from "./Card.js";
 import FormValidator from "./FormValidator.js";
 import Section from "./Section.js";
+import Popup from "./Popup.js";
 
 import { initialCards, config } from "../utils/constants.js";
 import {
@@ -54,7 +55,7 @@ const cardList = new Section(
     renderer: (item) => {
       const card = new Card(item, CARD_TEMPLATE_SELECTOR);
       const cardElement = card.generateCard();
-      cardList.setItem(cardElement);
+      cardList.addItem(cardElement);
     },
   },
   CARD_LIST_SELECTOR
@@ -86,8 +87,8 @@ function handlingPopupEditForm(event) {
 function handlingPopupAddForm(event) {
   event.preventDefault();
   const cardAttribute = { name: cardName.value, link: cardLink.value };
-  const card = new Card(cardAttribute, CARD_TEMPLATE_SELECTOR)
-  cardList.setItem(card.generateCard())
+  const card = new Card(cardAttribute, CARD_TEMPLATE_SELECTOR);
+  cardList.addItem(card.generateCard());
   cardValidator.disableSubmit();
   popupClose(popupAdd);
   popupAddForm.reset();
@@ -113,9 +114,5 @@ profileButtonEdit.addEventListener("click", popupEditOpen);
 popupAddCardButton.addEventListener("click", popupAddOpen);
 profileEditForm.addEventListener("submit", handlingPopupEditForm);
 popupAddForm.addEventListener("submit", handlingPopupAddForm);
-
-
-
-
 
 export { popupView, popupViewImage, popupViewImageCaption, popupOpen };
