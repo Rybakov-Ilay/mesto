@@ -2,6 +2,9 @@ import Card from "./Card.js";
 import FormValidator from "./FormValidator.js";
 import Section from "./Section.js";
 import Popup from "./Popup.js";
+import PopupWithImage from "./PopupWithImage.js";
+import PopupWithForm from "./PopupWithForm.js";
+import UserInfo from "./UserInfo.js";
 
 import { initialCards, config } from "../utils/constants.js";
 import {
@@ -12,7 +15,6 @@ import {
   popupClose,
 } from "../utils/popup.js";
 
-import PopupWithImage from "./PopupWithImage.js";
 
 const content = document.querySelector(".content");
 const popupEdit = document.querySelector(".popup_edit");
@@ -78,13 +80,13 @@ function popupAddOpen() {
   popupOpen(popupAdd);
 }
 
-function handlingPopupEditForm(event) {
-  event.preventDefault();
-  profileUserName.textContent = popupEditUserName.value;
-  profileUserJob.textContent = popupEditUserJob.value;
-  profileValidator.disableSubmit();
-  popupClose(popupEdit);
-}
+// function handlingPopupEditForm(event) {
+//   event.preventDefault();
+//   profileUserName.textContent = popupEditUserName.value;
+//   profileUserJob.textContent = popupEditUserJob.value;
+//   profileValidator.disableSubmit();
+//   popupClose(popupEdit);
+// }
 
 function handlingPopupAddForm(event) {
   event.preventDefault();
@@ -114,9 +116,23 @@ popupsList.forEach(setEventListenerOnCloseAndOverlay);
 // Вешаем обработчики событий на кнопки открытия форм и их сабмиты
 profileButtonEdit.addEventListener("click", popupEditOpen);
 popupAddCardButton.addEventListener("click", popupAddOpen);
-profileEditForm.addEventListener("submit", handlingPopupEditForm);
+// profileEditForm.addEventListener("submit", handlingPopupEditForm);
 popupAddForm.addEventListener("submit", handlingPopupAddForm);
 
 export { popupView, popupViewImage, popupViewImageCaption, popupOpen };
 
 
+const userData = { userName: ".profile__title", userJob: ".profile__subtitle" };
+
+const User = new UserInfo(".profile__title", ".profile__subtitle");
+console.log(User.getUserInfo());
+
+
+const popEdit = new PopupWithForm(".popup_edit", {
+  handleFormSubmit: (item) => {
+    User.setUserInfo(item.userName, item.userJob)
+
+  },
+});
+
+popEdit.setEventListeners();
