@@ -1,14 +1,8 @@
-import {
-  popupView,
-  popupViewImage,
-  popupViewImageCaption,
-  popupOpen,
-} from "../utils/popup.js";
-
 export default class Card {
-  constructor(data, templateSelector) {
+  constructor({ data, handleCardClick }, templateSelector) {
     this._name = data.name;
     this._link = data.link;
+    this._handleCardClick = handleCardClick;
     this._templateSelector = templateSelector;
   }
 
@@ -29,10 +23,7 @@ export default class Card {
   }
 
   _viewCard() {
-    popupViewImage.src = this._link;
-    popupViewImage.alt = this._name;
-    popupViewImageCaption.textContent = this._name;
-    popupOpen(popupView);
+    this._handleCardClick(this._name, this._link);
   }
 
   _setEventListeners() {
