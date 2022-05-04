@@ -24,7 +24,7 @@ import {
   profileEditForm,
 } from "../utils/constants.js";
 
-import "./index.css"
+import "./index.css";
 
 // Валидаторы форм
 const profileValidator = new FormValidator(
@@ -76,7 +76,11 @@ const cardList = new Section(
 cardList.renderItems();
 
 // Создаем пользователя
-const user = new UserInfo(USER_NAME_SELECTOR, USER_JOB_SELECTOR);
+const userData = {
+  userNameSelector: USER_NAME_SELECTOR,
+  userJobSelector: USER_JOB_SELECTOR,
+};
+const user = new UserInfo(userData);
 
 // Создаем форму редактирования и настраиваем слушателей
 const formEditProfile = new PopupWithForm(PROFILE_EDIT_FORM_SELECTOR, {
