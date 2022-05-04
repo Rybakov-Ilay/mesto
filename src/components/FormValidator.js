@@ -1,8 +1,13 @@
 export default class FormValidator {
-  constructor(config, formElement, formSubmit) {
+  constructor(config, formElement) {
     this._config = config;
     this._formElement = formElement;
-    this._formSubmit = formSubmit;
+    this._formSubmit = this._formElement.querySelector(
+      this._config.submitButtonSelector
+    );
+    this._inputList = Array.from(
+      this._formElement.querySelectorAll(this._config.inputSelector)
+    );
   }
 
   // Находим класс ошибки и получаем
@@ -32,38 +37,28 @@ export default class FormValidator {
       : this._hideError(inputElement);
   }
 
-  // метод проверяет валидность всех полей
-  _hasInvalidInput(inputList) {
-    return inputList.some((inputElement) => {
-      return !inputElement.validity.valid;
-    });
+  // метод проверяет валидность всех полей формы
+  _hasInvalidInput() {
+    return this._inputList.some((inputElement) => !inputElement.validity.valid);
   }
 
   // метод меняет состояние кнопки в зависимости от валидности всех полей
-  _toggleButtonState(inputList, button) {
-    if (this._hasInvalidInput(inputList)) {
-      button.classList.add(this._config.inactiveButtonClass);
-      button.setAttribute("disabled", "");
+  _toggleButtonState() {
+    if (this._hasInvalidInput()) {
+      this._formSubmit.classList.add(this._config.inactiveButtonClass);
+      this._formSubmit.setAttribute("disabled", "");
     } else {
-      button.classList.remove(this._config.inactiveButtonClass);
-      button.removeAttribute("disabled");
+      this._formSubmit.classList.remove(this._config.inactiveButtonClass);
+      this._formSubmit.removeAttribute("disabled");
     }
   }
   // метод на каждый ввод в поле формы проверяет ее на валидность
   _setEventListeners() {
-    const inputList = Array.from(
-      this._formElement.querySelectorAll(this._config.inputSelector)
-    );
-    const button = this._formElement.querySelector(
-      this._config.submitButtonSelector
-    );
-
-    this._toggleButtonState(inputList, button);
-
-    inputList.forEach((inputElement) => {
+    this._toggleButtonState();
+    this._inputList.forEach((inputElement) => {
       inputElement.addEventListener("input", () => {
         this._isValid(inputElement);
-        this._toggleButtonState(inputList, button);
+        this._toggleButtonState();
       });
     });
   }
@@ -73,19 +68,9 @@ export default class FormValidator {
     this._setEventListeners();
   }
 
-  // метод отключающий кнопку
-  disableSubmit() {
-    this._formSubmit.classList.add(this._config.inactiveButtonClass);
-    this._formSubmit.setAttribute("disabled", "");
-  }
   // метод скрывает ошибки полей и отключает кнопку
   resetValidation() {
-    this.disableSubmit();
-    const inputList = Array.from(
-      this._formElement.querySelectorAll(this._config.inputSelector)
-    );
-    inputList.forEach((inputElement) => {
-      this._hideError(inputElement);
-    });
+    this._toggleButtonState();
+    this._inputList.forEach((inputElement) => this._hideError(inputElement));
   }
 }

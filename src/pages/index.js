@@ -14,12 +14,10 @@ import {
   editProfileButton,
   POPUP_FULL_SCREEN_SELECTOR,
   PROFILE_EDIT_FORM_SELECTOR,
-  profileSubmit,
   USER_JOB_SELECTOR,
   USER_NAME_SELECTOR,
   userJobInput,
   userNameInput,
-  popupAddFormSubmit,
   popupAddForm,
   profileEditForm,
 } from "../utils/constants.js";
@@ -27,16 +25,8 @@ import {
 import "./index.css";
 
 // Валидаторы форм
-const profileValidator = new FormValidator(
-  config,
-  profileEditForm,
-  profileSubmit
-);
-const cardValidator = new FormValidator(
-  config,
-  popupAddForm,
-  popupAddFormSubmit
-);
+const profileValidator = new FormValidator(config, profileEditForm);
+const cardValidator = new FormValidator(config, popupAddForm);
 
 // Подключаем валидацию для формы профиля и формы добавления карточки
 profileValidator.enableValidation();

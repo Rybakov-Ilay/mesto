@@ -50,10 +50,6 @@ export const popupAddForm = forms.addCardForm;
 export const userNameInput = profileEditForm.elements.userName;
 export const userJobInput = profileEditForm.elements.userJob;
 
-// кнопки отправки формы
-export const profileSubmit = profileEditForm.querySelector(".popup__submit");
-export const popupAddFormSubmit = popupAddForm.querySelector(".popup__submit");
-
 // Селекторы
 export const CARD_TEMPLATE_SELECTOR = ".cards_template";
 export const CARD_LIST_SELECTOR = ".cards__list";
