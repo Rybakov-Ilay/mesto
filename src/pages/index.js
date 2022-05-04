@@ -27,7 +27,6 @@ import "./index.css";
 // Валидаторы форм
 const profileValidator = new FormValidator(config, profileEditForm);
 const cardValidator = new FormValidator(config, popupAddForm);
-
 // Подключаем валидацию для формы профиля и формы добавления карточки
 profileValidator.enableValidation();
 cardValidator.enableValidation();
@@ -54,11 +53,7 @@ function createCard(cardAttribute) {
 // Создаем объект содержащий секцию с карточками
 // и отрисовываем список карточек
 const cardList = new Section(
-  {
-    renderer: (cardAttribute) => {
-      cardList.addItem(createCard(cardAttribute));
-    },
-  },
+  { renderer: (cardAttribute) => cardList.addItem(createCard(cardAttribute)) },
   CARD_LIST_SELECTOR
 );
 cardList.renderItems(initialCards);
@@ -72,9 +67,8 @@ const user = new UserInfo(userData);
 
 // Создаем форму редактирования и настраиваем слушателей
 const formEditProfile = new PopupWithForm(PROFILE_EDIT_FORM_SELECTOR, {
-  handleFormSubmit: (userData) => {
-    user.setUserInfo(userData.userName, userData.userJob);
-  },
+  handleFormSubmit: (userData) =>
+    user.setUserInfo(userData.userName, userData.userJob),
 });
 formEditProfile.setEventListeners();
 
@@ -88,14 +82,13 @@ const formAddCard = new PopupWithForm(CARD_ADD_FORM_SELECTOR, {
 formAddCard.setEventListeners();
 
 function popupEditOpen() {
-  profileValidator.resetValidation();
   userNameInput.value = user.getUserInfo().userName;
   userJobInput.value = user.getUserInfo().userJob;
+  profileValidator.resetValidation();
   formEditProfile.open();
 }
 
 function popupAddOpen() {
-  popupAddForm.reset();
   cardValidator.resetValidation();
   formAddCard.open();
 }
