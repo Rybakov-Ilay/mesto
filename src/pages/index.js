@@ -58,7 +58,7 @@ function createCard(cardAttribute) {
       },
     },
     CARD_TEMPLATE_SELECTOR
-  );
+  ).generateCard();
 }
 
 // Создаем объект содержащий секцию с карточками
@@ -68,7 +68,7 @@ const cardList = new Section(
     data: initialCards,
     renderer: (cardAttribute) => {
       const card = createCard(cardAttribute);
-      cardList.addItem(card.generateCard());
+      cardList.addItem(card);
     },
   },
   CARD_LIST_SELECTOR
@@ -90,7 +90,7 @@ formEditProfile.setEventListeners();
 const formAddCard = new PopupWithForm(CARD_ADD_FORM_SELECTOR, {
   handleFormSubmit: (item) => {
     const cardAttribute = { name: item.placeName, link: item.placeLink };
-    cardList.addItem(createCard(cardAttribute).generateCard());
+    cardList.addItem(createCard(cardAttribute));
   },
 });
 formAddCard.setEventListeners();
