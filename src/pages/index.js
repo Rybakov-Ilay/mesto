@@ -65,15 +65,13 @@ function createCard(cardAttribute) {
 // и отрисовываем список карточек
 const cardList = new Section(
   {
-    data: initialCards,
     renderer: (cardAttribute) => {
-      const card = createCard(cardAttribute);
-      cardList.addItem(card);
+      cardList.addItem(createCard(cardAttribute));
     },
   },
   CARD_LIST_SELECTOR
 );
-cardList.renderItems();
+cardList.renderItems(initialCards);
 
 // Создаем пользователя
 const userData = {
