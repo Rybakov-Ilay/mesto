@@ -22,4 +22,46 @@ export default class Api {
         console.log(err);
       });
   }
+
+
+  addNewCard(card) {
+    return fetch(`${this._baseUrl}/cards`, {
+      method: "POST",
+      headers: {
+        authorization: this._token,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name: card.name,
+        link: card.link
+      })
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+        return Promise.reject(`Что-то пошло не так: ${res.status}`);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

@@ -93,7 +93,12 @@ formEditProfile.setEventListeners();
 const formAddCard = new PopupWithForm(CARD_ADD_FORM_SELECTOR, {
   handleFormSubmit: (item) => {
     const cardAttribute = { name: item.placeName, link: item.placeLink };
-    cardList.addItem(createCard(cardAttribute));
+    api
+      .addNewCard(cardAttribute)
+      .then((cardAttribute) => {
+        cardList.addItem(createCard(cardAttribute));
+      })
+      .catch((err) => console.log(err));
   },
 });
 formAddCard.setEventListeners();
