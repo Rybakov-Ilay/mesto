@@ -4,8 +4,9 @@ import Section from "../components/Section.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
+import Api from "../components/Api.js";
+
 import {
-  initialCards,
   config,
   CARD_ADD_FORM_SELECTOR,
   addCardButton,
@@ -23,6 +24,14 @@ import {
 } from "../utils/constants.js";
 
 import "./index.css";
+
+// параметры подключения к api сервера
+const optionsApi = {
+  baseUrl: "https://mesto.nomoreparties.co/v1/cohort-41",
+  token: "62c42d75-3174-484e-a374-431b449090d5",
+};
+// Создаем api работы с сервером
+const api = new Api(optionsApi);
 
 // Валидаторы форм
 const profileValidator = new FormValidator(config, profileEditForm);
@@ -51,12 +60,20 @@ function createCard(cardAttribute) {
 }
 
 // Создаем объект содержащий секцию с карточками
-// и отрисовываем список карточек
 const cardList = new Section(
   { renderer: (cardAttribute) => cardList.addItem(createCard(cardAttribute)) },
   CARD_LIST_SELECTOR
 );
-cardList.renderItems(initialCards);
+
+// Получаем список карточек с сервера через api и отрисовываем их
+api
+  .getInitialCards()
+  .then((res) => {
+    cardList.renderItems(res);
+  })
+  .catch((err) => {
+    console.log(err);
+  });
 
 // Создаем пользователя
 const userData = {
