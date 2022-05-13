@@ -5,6 +5,13 @@ export default class Api {
     this._token = this._options.token;
   }
 
+  _getResponseData(res) {
+    if (res.ok) {
+      return res.json();
+    }
+    return Promise.reject(`Что-то пошло не так: ${res.status}`);
+  }
+
   getInitialCards() {
     return fetch(`${this._baseUrl}/cards`, {
       headers: {
@@ -13,16 +20,12 @@ export default class Api {
       },
     })
       .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-        return Promise.reject(`Что-то пошло не так: ${res.status}`);
+        return this._getResponseData(res);
       })
       .catch((err) => {
         console.log(err);
       });
   }
-
 
   addNewCard(card) {
     return fetch(`${this._baseUrl}/cards`, {
@@ -33,35 +36,43 @@ export default class Api {
       },
       body: JSON.stringify({
         name: card.name,
-        link: card.link
-      })
+        link: card.link,
+      }),
     })
       .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-        return Promise.reject(`Что-то пошло не так: ${res.status}`);
+        return this._getResponseData(res);
       })
-      .catch((err) => {
-        console.log(err);
-      });
+      .catch((err) => console.log(err));
   }
 
+  getUser() {
+    return fetch(`${this._baseUrl}/users/me`, {
+      headers: {
+        authorization: this._token,
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => {
+        return this._getResponseData(res);
+      })
+      .catch((err) => console.log(err));
+  }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  editUser(userData) {
+    return fetch(`${this._baseUrl}/users/me`, {
+      method: "PATCH",
+      headers: {
+        authorization: this._token,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name: userData.userName,
+        about: userData.userJob,
+      }),
+    })
+      .then((res) => {
+        return this._getResponseData(res);
+      })
+      .catch((err) => console.log(err));
+  }
 }

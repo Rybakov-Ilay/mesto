@@ -82,10 +82,19 @@ const userData = {
 };
 const user = new UserInfo(userData);
 
+// Заполняем поля пользователя данными с сервера
+api
+  .getUser()
+  .then((userData) => user.setUserInfo(userData.name, userData.about))
+  .catch((err) => console.log(err));
+
 // Создаем форму редактирования и настраиваем слушателей
 const formEditProfile = new PopupWithForm(PROFILE_EDIT_FORM_SELECTOR, {
-  handleFormSubmit: (userData) =>
-    user.setUserInfo(userData.userName, userData.userJob),
+  handleFormSubmit: (userData) => {
+    api
+      .editUser(userData)
+      .then((userData) => user.setUserInfo(userData.name, userData.about));
+  },
 });
 formEditProfile.setEventListeners();
 
