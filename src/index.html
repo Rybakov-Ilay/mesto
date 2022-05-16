@@ -148,6 +148,22 @@
       </div>
     </div>
 
+    <div class="popup popup_delete">
+      <div class="popup__container">
+        <button
+          class="popup__button-close"
+          type="button"
+          aria-label="закрыть форму добавления"
+        ></button>
+        <h3 class="popup__form-title">Вы уверены?</h3>
+        <form class="popup__form" name="addCardForm" novalidate>
+          <button class="popup__submit" type="submit">Да</button>
+        </form>
+      </div>
+    </div>
+
+
+
     <template class="cards cards_template">
       <li class="card">
         <article class="card__article">
@@ -168,6 +184,6 @@
         </article>
       </li>
     </template>
-    <script src="pages/index.js" type="module"></script>
+<!--    <script src="pages/index.js" type="module"></script>-->
   </body>
 </html>

@@ -54,6 +54,7 @@ export const userJobInput = profileEditForm.elements.userJob;
 export const CARD_TEMPLATE_SELECTOR = ".cards_template";
 export const CARD_LIST_SELECTOR = ".cards__list";
 export const POPUP_FULL_SCREEN_SELECTOR = ".popup_view-image";
+export const POPUP_DELETE_SELECTOR = ".popup_delete";
 export const USER_NAME_SELECTOR = ".profile__title";
 export const USER_JOB_SELECTOR = ".profile__subtitle";
 export const USER_AVATAR_SELECTOR = ".profile__avatar";

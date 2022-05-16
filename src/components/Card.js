@@ -1,8 +1,19 @@
 export default class Card {
-  constructor({ data, handleCardClick }, templateSelector) {
+  constructor(
+    { data, handleCardClick, handleCardDelete },
+    templateSelector,
+    userID
+  ) {
     this._name = data.name;
     this._link = data.link;
+    this._id = data._id;
+    // console.log("id= ", this._id);
+    this._owner = data.owner._id;
+    console.log("owner= ", this._owner);
+    console.log("MyID= ", userID);
+    this._myID = userID;
     this._handleCardClick = handleCardClick;
+    this._handleCardDelete = handleCardDelete;
     this._templateSelector = templateSelector;
   }
 
@@ -18,8 +29,7 @@ export default class Card {
   }
 
   _deleteCard() {
-    this._card.closest(".card").remove();
-    this._card = null;
+    this._handleCardDelete(this._card, this._id);
   }
 
   _viewCard() {
@@ -43,6 +53,10 @@ export default class Card {
     this._cardImage = this._card.querySelector(".card__image");
     this._like = this._card.querySelector(".card__button-like");
     this._trash = this._card.querySelector(".card__trash");
+
+    if (this._owner !== this._myID) {
+      this._trash.remove();
+    }
 
     this._card.querySelector(".card__caption-title").textContent = this._name;
     this._cardImage.src = this._link;

@@ -75,4 +75,18 @@ export default class Api {
       })
       .catch((err) => console.log(err));
   }
+
+  deleteCard(cardID) {
+    return fetch(`${this._baseUrl}/cards/${cardID}`, {
+      method: "DELETE",
+      headers: {
+        authorization: this._token,
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => {
+        return this._getResponseData(res);
+      })
+      .catch((err) => console.log(err, `\nCardID: ${cardID}`));
+  }
 }

@@ -3,6 +3,7 @@ import FormValidator from "../components/FormValidator.js";
 import Section from "../components/Section.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
+import PopupWithSubmit from "../components/PopupWithSubmit.js";
 import UserInfo from "../components/UserInfo.js";
 import Api from "../components/Api.js";
 
@@ -22,6 +23,7 @@ import {
   userNameInput,
   popupAddForm,
   profileEditForm,
+  POPUP_DELETE_SELECTOR,
 } from "../utils/constants.js";
 
 import "./index.css";
@@ -47,6 +49,18 @@ cardValidator.enableValidation();
 const fullScreenImage = new PopupWithImage(POPUP_FULL_SCREEN_SELECTOR);
 fullScreenImage.setEventListeners();
 
+// Создаем объект предупреждения о выбранном действии
+// и настраиваем закрытие предупреждения по клику вне модального окна
+// и кнопке его закрытия
+const caution = new PopupWithSubmit(POPUP_DELETE_SELECTOR, {
+  handleFormSubmit: (card, id) => {
+    api
+      .deleteCard(id)
+      .then(card.remove())
+      .catch((err) => console.log(err));
+  },
+});
+
 // Функция создания карточки
 function createCard(cardAttribute) {
   return new Card(
@@ -55,8 +69,14 @@ function createCard(cardAttribute) {
       handleCardClick: (name, link) => {
         fullScreenImage.open(name, link);
       },
+
+      handleCardDelete: (card, id) => {
+        caution.open(card, id);
+        caution.setEventListeners();
+      },
     },
-    CARD_TEMPLATE_SELECTOR
+    CARD_TEMPLATE_SELECTOR,
+    user.getUserID()
   ).generateCard();
 }
 
@@ -82,11 +102,17 @@ const userData = {
   userJobSelector: USER_JOB_SELECTOR,
 };
 const user = new UserInfo(userData);
-
-// Заполняем полей пользователя данными с сервера
+// Заполняем поля пользователя данными с сервера
 api
   .getUser()
-  .then((userData) => user.setUserInfo(userData.name, userData.about, userData.avatar))
+  .then((userData) => {
+    user.setUserInfo(
+      userData.name,
+      userData.about,
+      userData.avatar,
+      userData._id
+    );
+  })
   .catch((err) => console.log(err));
 
 // Создаем форму редактирования и настраиваем слушателей
@@ -94,7 +120,9 @@ const formEditProfile = new PopupWithForm(PROFILE_EDIT_FORM_SELECTOR, {
   handleFormSubmit: (userData) => {
     api
       .editUser(userData)
-      .then((userData) => user.setUserInfo(userData.name, userData.about, userData.avatar))
+      .then((userData) =>
+        user.setUserInfo(userData.name, userData.about, userData.avatar)
+      )
       .catch((err) => console.log(err));
   },
 });

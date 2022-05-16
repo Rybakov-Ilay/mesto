@@ -12,10 +12,15 @@ export default class UserInfo {
     };
   }
 
-  setUserInfo(userNewName, userNewJob, userAvatar) {
+  setUserInfo(userNewName, userNewJob, userAvatar, _id) {
     this._userName.textContent = userNewName;
     this._userJob.textContent = userNewJob;
     this._avatar.src = userAvatar;
     this._avatar.alt = userNewName;
+    this._id = _id
+  }
+
+  getUserID() {
+    return this._id
   }
 }
