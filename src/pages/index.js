@@ -17,6 +17,7 @@ import {
   PROFILE_EDIT_FORM_SELECTOR,
   USER_JOB_SELECTOR,
   USER_NAME_SELECTOR,
+  USER_AVATAR_SELECTOR,
   userJobInput,
   userNameInput,
   popupAddForm,
@@ -82,10 +83,10 @@ const userData = {
 };
 const user = new UserInfo(userData);
 
-// Заполняем поля пользователя данными с сервера
+// Заполняем полей пользователя данными с сервера
 api
   .getUser()
-  .then((userData) => user.setUserInfo(userData.name, userData.about))
+  .then((userData) => user.setUserInfo(userData.name, userData.about, userData.avatar))
   .catch((err) => console.log(err));
 
 // Создаем форму редактирования и настраиваем слушателей
@@ -93,7 +94,8 @@ const formEditProfile = new PopupWithForm(PROFILE_EDIT_FORM_SELECTOR, {
   handleFormSubmit: (userData) => {
     api
       .editUser(userData)
-      .then((userData) => user.setUserInfo(userData.name, userData.about));
+      .then((userData) => user.setUserInfo(userData.name, userData.about, userData.avatar))
+      .catch((err) => console.log(err));
   },
 });
 formEditProfile.setEventListeners();

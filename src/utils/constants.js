@@ -56,5 +56,6 @@ export const CARD_LIST_SELECTOR = ".cards__list";
 export const POPUP_FULL_SCREEN_SELECTOR = ".popup_view-image";
 export const USER_NAME_SELECTOR = ".profile__title";
 export const USER_JOB_SELECTOR = ".profile__subtitle";
+export const USER_AVATAR_SELECTOR = ".profile__avatar";
 export const PROFILE_EDIT_FORM_SELECTOR = ".popup_edit";
 export const CARD_ADD_FORM_SELECTOR = ".popup_add";
