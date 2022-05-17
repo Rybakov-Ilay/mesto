@@ -14,14 +14,18 @@ import {
   CARD_TEMPLATE_SELECTOR,
   CARD_LIST_SELECTOR,
   editProfileButton,
+  editAvatarButton,
   POPUP_FULL_SCREEN_SELECTOR,
   PROFILE_EDIT_FORM_SELECTOR,
+  AVATAR_EDIT_FORM_SELECTOR,
   USER_JOB_SELECTOR,
   USER_NAME_SELECTOR,
   USER_AVATAR_SELECTOR,
   userJobInput,
   userNameInput,
+  userAvatarInput,
   popupAddForm,
+  avatarEditForm,
   profileEditForm,
   POPUP_DELETE_SELECTOR,
 } from "../utils/constants.js";
@@ -39,9 +43,11 @@ const api = new Api(optionsApi);
 // Валидаторы форм
 const profileValidator = new FormValidator(config, profileEditForm);
 const cardValidator = new FormValidator(config, popupAddForm);
+const avatarValidator = new FormValidator(config, avatarEditForm);
 // Подключаем валидацию для формы профиля и формы добавления карточки
 profileValidator.enableValidation();
 cardValidator.enableValidation();
+avatarValidator.enableValidation()
 
 // Создаем объект полноэкранного просмотра изображения
 // и настраиваем закрытие просмотра изображения по клику вне модального окна
@@ -105,14 +111,7 @@ const user = new UserInfo(userData);
 // Заполняем поля пользователя данными с сервера
 api
   .getUser()
-  .then((userData) => {
-    user.setUserInfo(
-      userData.name,
-      userData.about,
-      userData.avatar,
-      userData._id
-    );
-  })
+  .then((res) => user.setUserInfo(res))
   .catch((err) => console.log(err));
 
 // Создаем форму редактирования и настраиваем слушателей
@@ -120,9 +119,7 @@ const formEditProfile = new PopupWithForm(PROFILE_EDIT_FORM_SELECTOR, {
   handleFormSubmit: (userData) => {
     api
       .editUser(userData)
-      .then((userData) =>
-        user.setUserInfo(userData.name, userData.about, userData.avatar)
-      )
+      .then((res) => user.setUserInfo(res))
       .catch((err) => console.log(err));
   },
 });
@@ -142,6 +139,18 @@ const formAddCard = new PopupWithForm(CARD_ADD_FORM_SELECTOR, {
 });
 formAddCard.setEventListeners();
 
+
+// Создаем форму редактирования аватара и настраиваем слушателей
+const formEditAvatar = new PopupWithForm(AVATAR_EDIT_FORM_SELECTOR, {
+  handleFormSubmit: (avatar) => {
+    api
+      .editAvatar(avatar.avatarLink)
+      .then((res) => user.setUserInfo(res))
+      .catch((err) => console.log(err));
+  },
+});
+formEditAvatar.setEventListeners();
+
 function popupEditOpen() {
   userNameInput.value = user.getUserInfo().userName;
   userJobInput.value = user.getUserInfo().userJob;
@@ -154,6 +163,15 @@ function popupAddOpen() {
   formAddCard.open();
 }
 
+function popupAvatarEditOpen() {
+  avatarValidator.resetValidation()
+  userAvatarInput.value = user.getUserAvatar()
+  formEditAvatar.open()
+}
+
+
 // Вешаем обработчики событий на кнопки открытия форм
 editProfileButton.addEventListener("click", popupEditOpen);
 addCardButton.addEventListener("click", popupAddOpen);
+editAvatarButton.addEventListener("click", popupAvatarEditOpen)
+

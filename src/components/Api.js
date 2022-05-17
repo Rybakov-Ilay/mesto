@@ -89,4 +89,21 @@ export default class Api {
       })
       .catch((err) => console.log(err, `\nCardID: ${cardID}`));
   }
+
+  editAvatar(link) {
+    return fetch(`${this._baseUrl}/users/me/avatar`, {
+      method: "PATCH",
+      headers: {
+        authorization: this._token,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        avatar: link,
+      }),
+    })
+      .then((res) => {
+        return this._getResponseData(res);
+      })
+      .catch((err) => console.log(err));
+  }
 }

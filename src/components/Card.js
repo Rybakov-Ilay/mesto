@@ -2,7 +2,7 @@ export default class Card {
   constructor(
     { data, handleCardClick, handleCardDelete },
     templateSelector,
-    userID
+    userId
   ) {
     this._name = data.name;
     this._link = data.link;
@@ -10,8 +10,8 @@ export default class Card {
     // console.log("id= ", this._id);
     this._owner = data.owner._id;
     console.log("owner= ", this._owner);
-    console.log("MyID= ", userID);
-    this._myID = userID;
+    console.log("MyID= ", userId);
+    this._myId = userId;
     this._handleCardClick = handleCardClick;
     this._handleCardDelete = handleCardDelete;
     this._templateSelector = templateSelector;
@@ -54,7 +54,7 @@ export default class Card {
     this._like = this._card.querySelector(".card__button-like");
     this._trash = this._card.querySelector(".card__trash");
 
-    if (this._owner !== this._myID) {
+    if (this._owner !== this._myId) {
       this._trash.remove();
     }
 

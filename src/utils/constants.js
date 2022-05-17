@@ -40,15 +40,18 @@ const content = document.querySelector(".content");
 // кнопки открытия форм
 export const editProfileButton = content.querySelector(".profile__edit-button");
 export const addCardButton = content.querySelector(".profile__add-button");
+export const editAvatarButton = content.querySelector(".profile__avatar-edit")
 
 // формы
 const forms = document.forms;
 export const profileEditForm = forms.profileEditingForm;
 export const popupAddForm = forms.addCardForm;
+export const avatarEditForm = forms.avatarEditForm;
 
 // Инпуты формы редактирования профиля
 export const userNameInput = profileEditForm.elements.userName;
 export const userJobInput = profileEditForm.elements.userJob;
+export const userAvatarInput = avatarEditForm.elements.avatarLink;
 
 // Селекторы
 export const CARD_TEMPLATE_SELECTOR = ".cards_template";
@@ -59,4 +62,5 @@ export const USER_NAME_SELECTOR = ".profile__title";
 export const USER_JOB_SELECTOR = ".profile__subtitle";
 export const USER_AVATAR_SELECTOR = ".profile__avatar";
 export const PROFILE_EDIT_FORM_SELECTOR = ".popup_edit";
+export const AVATAR_EDIT_FORM_SELECTOR = ".popup_avatar";
 export const CARD_ADD_FORM_SELECTOR = ".popup_add";

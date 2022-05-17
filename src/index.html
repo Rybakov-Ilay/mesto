@@ -16,11 +16,11 @@
 
       <main class="content">
         <section class="profile">
-          <img
-            class="profile__avatar"
-            src=<%=require("./images/me-avatar.jpg")%>
-            alt="Портрет автора"
-          />
+          <div class="profile__avatar-wrapper">
+            <img class="profile__avatar" src="#" alt="Портрет автора" />
+            <div class="profile__avatar-edit"></div>
+          </div>
+
           <div class="profile__info">
             <div class="profile__title-container">
               <h1 class="profile__title"></h1>
@@ -162,7 +162,30 @@
       </div>
     </div>
 
-
+    <div class="popup popup_avatar">
+      <div class="popup__container">
+        <button
+          class="popup__button-close"
+          type="button"
+          aria-label="закрыть форму добавления"
+        ></button>
+        <h3 class="popup__form-title">Обновить аватар</h3>
+        <form class="popup__form" name="avatarEditForm" novalidate>
+          <div class="popup__input-wrapper">
+            <input
+              class="popup__input popup__input_type_place-link"
+              type="url"
+              name="avatarLink"
+              placeholder="ссылка на картинку"
+              required
+              id="avatarLink-input"
+            />
+            <span class="avatarLink-input-error popup__input-error"></span>
+          </div>
+          <button class="popup__submit" type="submit">Сохранить</button>
+        </form>
+      </div>
+    </div>
 
     <template class="cards cards_template">
       <li class="card">
@@ -184,6 +207,6 @@
         </article>
       </li>
     </template>
-<!--    <script src="pages/index.js" type="module"></script>-->
+    <!--    <script src="pages/index.js" type="module"></script>-->
   </body>
 </html>

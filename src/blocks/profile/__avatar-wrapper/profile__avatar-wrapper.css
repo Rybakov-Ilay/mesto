@@ -1,0 +1,19 @@
+.profile__avatar-wrapper {
+  grid-area: avatar;
+  max-width: 120px;
+  min-height: 120px;
+  display: flex;
+  position: relative;
+  border-radius: 50%;
+}
+
+@media screen and (max-width: 600px) {
+  .profile__avatar-wrapper {
+    justify-self: center;
+  }
+}
+
+.profile__avatar-wrapper:hover .profile__avatar-edit{
+  visibility: visible;
+  opacity: 1;
+}
