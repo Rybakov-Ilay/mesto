@@ -9,6 +9,7 @@ export default class Card {
     this._id = data._id;
     // console.log("id= ", this._id);
     this._owner = data.owner._id;
+    this._likes = data.likes.length
     console.log("owner= ", this._owner);
     console.log("MyID= ", userId);
     this._myId = userId;
@@ -53,6 +54,8 @@ export default class Card {
     this._cardImage = this._card.querySelector(".card__image");
     this._like = this._card.querySelector(".card__button-like");
     this._trash = this._card.querySelector(".card__trash");
+    this._likesCount = this._card.querySelector(".card__like-count");
+
 
     if (this._owner !== this._myId) {
       this._trash.remove();
@@ -61,6 +64,7 @@ export default class Card {
     this._card.querySelector(".card__caption-title").textContent = this._name;
     this._cardImage.src = this._link;
     this._cardImage.alt = this._name;
+    this._likesCount.textContent = this._likes
 
     this._setEventListeners();
 

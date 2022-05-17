@@ -1,8 +1,7 @@
 export default class Api {
   constructor(options) {
-    this._options = options;
-    this._baseUrl = this._options.baseUrl;
-    this._token = this._options.token;
+    this._baseUrl = options.baseUrl;
+    this._token = options.token;
   }
 
   _getResponseData(res) {
