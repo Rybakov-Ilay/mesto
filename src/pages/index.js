@@ -20,7 +20,6 @@ import {
   AVATAR_EDIT_FORM_SELECTOR,
   USER_JOB_SELECTOR,
   USER_NAME_SELECTOR,
-  USER_AVATAR_SELECTOR,
   userJobInput,
   userNameInput,
   userAvatarInput,
@@ -35,7 +34,10 @@ import "./index.css";
 // параметры подключения к api сервера
 const optionsApi = {
   baseUrl: "https://mesto.nomoreparties.co/v1/cohort-41",
-  token: "62c42d75-3174-484e-a374-431b449090d5",
+  headers: {
+    authorization: "62c42d75-3174-484e-a374-431b449090d5",
+    "Content-Type": "application/json",
+  },
 };
 // Создаем api работы с сервером
 const api = new Api(optionsApi);
@@ -47,7 +49,7 @@ const avatarValidator = new FormValidator(config, avatarEditForm);
 // Подключаем валидацию для формы профиля и формы добавления карточки
 profileValidator.enableValidation();
 cardValidator.enableValidation();
-avatarValidator.enableValidation()
+avatarValidator.enableValidation();
 
 // Создаем объект полноэкранного просмотра изображения
 // и настраиваем закрытие просмотра изображения по клику вне модального окна
@@ -80,6 +82,18 @@ function createCard(cardAttribute) {
         caution.open(card, id);
         caution.setEventListeners();
       },
+
+      handleLikeClick: (cardId, isLiked, handleLikeCount) => {
+        isLiked
+          ? api
+              .deleteLike(cardId)
+              .then((res) => handleLikeCount(res))
+              .catch((err) => console.log(err))
+          : api
+              .putLike(cardId)
+              .then((res) => handleLikeCount(res))
+              .catch((err) => console.log(err));
+      },
     },
     CARD_TEMPLATE_SELECTOR,
     user.getUserID()
@@ -111,7 +125,7 @@ const user = new UserInfo(userData);
 // Заполняем поля пользователя данными с сервера
 api
   .getUser()
-  .then((res) => user.setUserInfo(res))
+  .then((res) => {user.setUserInfo(res)})
   .catch((err) => console.log(err));
 
 // Создаем форму редактирования и настраиваем слушателей
@@ -139,7 +153,6 @@ const formAddCard = new PopupWithForm(CARD_ADD_FORM_SELECTOR, {
 });
 formAddCard.setEventListeners();
 
-
 // Создаем форму редактирования аватара и настраиваем слушателей
 const formEditAvatar = new PopupWithForm(AVATAR_EDIT_FORM_SELECTOR, {
   handleFormSubmit: (avatar) => {
@@ -164,14 +177,14 @@ function popupAddOpen() {
 }
 
 function popupAvatarEditOpen() {
-  avatarValidator.resetValidation()
-  userAvatarInput.value = user.getUserAvatar()
-  formEditAvatar.open()
+  avatarValidator.resetValidation();
+  userAvatarInput.value = user.getUserAvatar();
+  formEditAvatar.open();
 }
-
 
 // Вешаем обработчики событий на кнопки открытия форм
 editProfileButton.addEventListener("click", popupEditOpen);
 addCardButton.addEventListener("click", popupAddOpen);
-editAvatarButton.addEventListener("click", popupAvatarEditOpen)
+editAvatarButton.addEventListener("click", popupAvatarEditOpen);
+
 
