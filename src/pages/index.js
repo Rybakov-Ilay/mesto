@@ -27,6 +27,9 @@ import {
   avatarEditForm,
   profileEditForm,
   POPUP_DELETE_SELECTOR,
+  profileSubmit,
+  avatarSubmit,
+  addSubmit,
 } from "../utils/constants.js";
 
 import "./index.css";
@@ -125,16 +128,19 @@ const user = new UserInfo(userData);
 // Заполняем поля пользователя данными с сервера
 api
   .getUser()
-  .then((res) => {user.setUserInfo(res)})
+  .then((res) => user.setUserInfo(res))
   .catch((err) => console.log(err));
 
 // Создаем форму редактирования и настраиваем слушателей
 const formEditProfile = new PopupWithForm(PROFILE_EDIT_FORM_SELECTOR, {
   handleFormSubmit: (userData) => {
+    const text = profileSubmit.textContent;
+    loader(profileSubmit, true, text);
     api
       .editUser(userData)
       .then((res) => user.setUserInfo(res))
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err))
+      .finally(() => loader(profileSubmit, false, text));
   },
 });
 formEditProfile.setEventListeners();
@@ -143,12 +149,13 @@ formEditProfile.setEventListeners();
 const formAddCard = new PopupWithForm(CARD_ADD_FORM_SELECTOR, {
   handleFormSubmit: (item) => {
     const cardAttribute = { name: item.placeName, link: item.placeLink };
+    const text = addSubmit.textContent;
+    loader(addSubmit, true, text);
     api
       .addNewCard(cardAttribute)
-      .then((cardAttribute) => {
-        cardList.addItem(createCard(cardAttribute));
-      })
-      .catch((err) => console.log(err));
+      .then((cardAttribute) => cardList.addItem(createCard(cardAttribute)))
+      .catch((err) => console.log(err))
+      .finally(() => loader(addSubmit, false, text));
   },
 });
 formAddCard.setEventListeners();
@@ -156,10 +163,13 @@ formAddCard.setEventListeners();
 // Создаем форму редактирования аватара и настраиваем слушателей
 const formEditAvatar = new PopupWithForm(AVATAR_EDIT_FORM_SELECTOR, {
   handleFormSubmit: (avatar) => {
+    const text = avatarSubmit.textContent;
+    loader(avatarSubmit, true, text);
     api
       .editAvatar(avatar.avatarLink)
       .then((res) => user.setUserInfo(res))
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err))
+      .finally(() => loader(avatarSubmit, false, text));
   },
 });
 formEditAvatar.setEventListeners();
@@ -187,4 +197,8 @@ editProfileButton.addEventListener("click", popupEditOpen);
 addCardButton.addEventListener("click", popupAddOpen);
 editAvatarButton.addEventListener("click", popupAvatarEditOpen);
 
-
+function loader(popupSubmit, isLoading, text) {
+  isLoading
+    ? (popupSubmit.textContent = "Сохранение...")
+    : (popupSubmit.textContent = text);
+}

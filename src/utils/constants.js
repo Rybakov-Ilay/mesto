@@ -34,19 +34,23 @@ export const config = {
   errorClass: "popup__input-error_active",
 };
 
-
 const content = document.querySelector(".content");
 
 // кнопки открытия форм
 export const editProfileButton = content.querySelector(".profile__edit-button");
 export const addCardButton = content.querySelector(".profile__add-button");
-export const editAvatarButton = content.querySelector(".profile__avatar-edit")
+export const editAvatarButton = content.querySelector(".profile__avatar-edit");
 
 // формы
 const forms = document.forms;
 export const profileEditForm = forms.profileEditingForm;
 export const popupAddForm = forms.addCardForm;
 export const avatarEditForm = forms.avatarEditForm;
+
+// сабмиты форм
+export const profileSubmit = forms.profileEditingForm.elements.popupSubmit;
+export const addSubmit = forms.addCardForm.elements.popupSubmit;
+export const avatarSubmit = forms.avatarEditForm.elements.popupSubmit;
 
 // Инпуты формы редактирования профиля
 export const userNameInput = profileEditForm.elements.userName;
