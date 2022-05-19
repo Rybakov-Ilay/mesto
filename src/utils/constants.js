@@ -47,11 +47,6 @@ export const profileEditForm = forms.profileEditingForm;
 export const popupAddForm = forms.addCardForm;
 export const avatarEditForm = forms.avatarEditForm;
 
-// сабмиты форм
-export const profileSubmit = forms.profileEditingForm.elements.popupSubmit;
-export const addSubmit = forms.addCardForm.elements.popupSubmit;
-export const avatarSubmit = forms.avatarEditForm.elements.popupSubmit;
-
 // Инпуты формы редактирования профиля
 export const userNameInput = profileEditForm.elements.userName;
 export const userJobInput = profileEditForm.elements.userJob;
@@ -64,7 +59,6 @@ export const POPUP_FULL_SCREEN_SELECTOR = ".popup_view-image";
 export const POPUP_DELETE_SELECTOR = ".popup_delete";
 export const USER_NAME_SELECTOR = ".profile__title";
 export const USER_JOB_SELECTOR = ".profile__subtitle";
-export const USER_AVATAR_SELECTOR = ".profile__avatar";
 export const PROFILE_EDIT_FORM_SELECTOR = ".popup_edit";
 export const AVATAR_EDIT_FORM_SELECTOR = ".popup_avatar";
 export const CARD_ADD_FORM_SELECTOR = ".popup_add";
