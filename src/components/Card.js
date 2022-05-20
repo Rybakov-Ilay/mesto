@@ -20,18 +20,6 @@ export default class Card {
     this._handleLikeClick = handleLikeClick;
 
     this._templateSelector = templateSelector;
-
-    // console.log(
-    //   `
-    //   name  : ${this._name}
-    //   owner : ${this._owner}
-    //   cardId: ${this._id}
-    //   myID  : ${this._myId}
-    //   likes : ${this._likes}
-    //   `
-    // );
-
-
   }
 
   _getCardTemplate() {

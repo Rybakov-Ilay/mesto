@@ -1,30 +1,3 @@
-export const initialCards = [
-  {
-    name: "Архыз",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
-  },
-  {
-    name: "Челябинская область",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg",
-  },
-  {
-    name: "Иваново",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg",
-  },
-  {
-    name: "Камчатка",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg",
-  },
-  {
-    name: "Холмогорский район",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg",
-  },
-  {
-    name: "Байкал",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
-  },
-];
-
 export const config = {
   formSelector: ".popup__form",
   inputSelector: ".popup__input",
@@ -40,17 +13,6 @@ const content = document.querySelector(".content");
 export const editProfileButton = content.querySelector(".profile__edit-button");
 export const addCardButton = content.querySelector(".profile__add-button");
 export const editAvatarButton = content.querySelector(".profile__avatar-edit");
-
-// формы
-const forms = document.forms;
-export const profileEditForm = forms.profileEditingForm;
-export const popupAddForm = forms.addCardForm;
-export const avatarEditForm = forms.avatarEditForm;
-
-// Инпуты формы редактирования профиля
-export const userNameInput = profileEditForm.elements.userName;
-export const userJobInput = profileEditForm.elements.userJob;
-export const userAvatarInput = avatarEditForm.elements.avatarLink;
 
 // Селекторы
 export const CARD_TEMPLATE_SELECTOR = ".cards_template";
