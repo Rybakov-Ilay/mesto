@@ -5,6 +5,7 @@ export default class PopupWithSubmit extends Popup {
     super(popupSelector);
     this._handleFormSubmit = handleFormSubmit;
     this._form = this._popup.querySelector(".popup__form");
+    this.submit = this._popup.querySelector(".popup__submit");
   }
 
   open(card, cardID) {
@@ -18,7 +19,12 @@ export default class PopupWithSubmit extends Popup {
     this._form.addEventListener("submit", (evt) => {
       evt.preventDefault();
       this._handleFormSubmit(this._card, this._cardID);
-      this.close();
     });
+  }
+
+  renderLoading(isLoading = true, buttonText = "Да") {
+    isLoading
+      ? (this.submit.textContent = "Удаление...")
+      : (this.submit.textContent = buttonText);
   }
 }

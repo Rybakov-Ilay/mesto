@@ -42,9 +42,9 @@ export default class Card {
   }
 
   _handelLike() {
-    this._like.classList.toggle("card__button-like_active");
     this._handleLikeClick(this._id, this._isLiked, (data) => {
       this._likesCount.textContent = data.likes.length;
+      this._like.classList.toggle("card__button-like_active");
       this._isLiked = !this._isLiked;
     });
   }
